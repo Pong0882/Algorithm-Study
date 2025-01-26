@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main_15651 {
+public class Main_N과M_3 {
     private static int[] result; // 현재 순열을 저장할 배열
     private static int N, R; // 전체 원소 수(N)와 선택할 원소 수(R)
     private static StringBuilder sb = new StringBuilder(); // 결과를 저장할 StringBuilder

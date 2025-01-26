@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_15652 {
+// 순서 X , 중복 X : Combination -> 조합
+public class Main_N과M_2 {
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static StringTokenizer st;
     private static StringBuilder sb = new StringBuilder();
@@ -38,7 +39,7 @@ public class Main_15652 {
         }
         for (int i = start; i < N; i++) {
             result[cnt] = i + 1;
-            Combi(cnt + 1, i);
+            Combi(cnt + 1, i + 1);
         }
     }
 }

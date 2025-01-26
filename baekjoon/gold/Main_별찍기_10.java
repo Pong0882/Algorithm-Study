@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main_2447 {
+public class Main_별찍기_10 {
     private static int n;
     private static int[][] paper;
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

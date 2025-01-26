@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main_15654 {
+public class Main_N과M_5 {
     private static boolean[] visited; // 방문 여부 체크 >> 중복 X
     private static int[] card;
     private static int[] result; // 현재 순열을 저장할 배열
