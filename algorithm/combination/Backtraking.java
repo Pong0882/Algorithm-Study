@@ -8,6 +8,9 @@ import java.util.StringTokenizer;
 // 중복 X, 순서 상관 O
 // 중복 X >> visited[]
 // 순서 상관 O >> 재귀 할때 시작 값을 키워주며 재귀
+// 매개변수로 START 받아서 for문 시작값으로 넣어줄것
+
+// 중복 X >> visited[] // 순서 상관 >> 매개변수 start
 public class Backtraking {
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static StringTokenizer st;
