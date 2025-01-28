@@ -9,7 +9,7 @@ public class BasicFrame {
     private static StringBuilder sb = new StringBuilder();
 
     private static int A, B, N, M, result;
-    private static int[] paper;
+    private static int[][] paper;
 
     public static void main(String[] args) throws IOException {
         // N = Integer.parseInt(br.readLine());
@@ -18,6 +18,17 @@ public class BasicFrame {
         // st = new StringTokenizer(br.readLine());
         // for (int i = 0; i < N; i++) {
         // paper[i] = Integer.parseInt(st.nextToken());
+        // }
+
+        // N = Integer.parseInt(br.readLine());
+
+        // paper = new int[N][N];
+
+        // for (int i = 0; i < N; i++) {
+        // st = new StringTokenizer(br.readLine());
+        // for (int j = 0; j < N; j++) {
+        // paper[i][j] = Integer.parseInt(st.nextToken());
+        // }
         // }
     }
 }
