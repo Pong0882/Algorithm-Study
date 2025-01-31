@@ -1,6 +1,7 @@
 package ssafy.ssafyGit.book;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BookManagerImpl implements IBookManager {
@@ -10,6 +11,10 @@ public class BookManagerImpl implements IBookManager {
 
     private BookManagerImpl() {
         books = new ArrayList<>();
+    }
+
+    public static IBookManager getInstance() {
+        return manager;
     }
 
     @Override
@@ -89,5 +94,19 @@ public class BookManagerImpl implements IBookManager {
             }
         }
         return null;
+
+    }
+
+    @Override
+    public Book[] getListSortByIsbn() {
+        Collections.sort(books);
+        return books.toArray(new Book[books.size()]);
+    }
+
+    @Override
+    public Book[] sortDescByIsbn() {
+        Collections.sort(books, (o1, o2) -> (-o1.compareTo(o2)));
+
+        return books.toArray(new Book[books.size()]);
     }
 }

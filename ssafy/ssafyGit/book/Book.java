@@ -1,77 +1,84 @@
 package ssafy.ssafyGit.book;
-public class Book {
-	protected String isbn;
-	protected String title;
-	protected String author;
-	protected String publisher;
-	protected int price;
-	protected String desc;
 
-	public Book(String isbn, String title, String author, String publisher, int price, String desc) {
-		super();
-		this.isbn = isbn;
-		this.title = title;
-		this.author = author;
-		this.publisher = publisher;
-		this.price = price;
-		this.desc = desc;
-	}
+public class Book implements Comparable<Book> {
 
-	public Book() {
-		super();
-	}
+    protected String isbn;
+    protected String title;
+    protected String author;
+    protected String publisher;
+    protected int price;
+    protected String desc;
 
-	@Override
-	public String toString() {
-		return isbn + " | " + title + " | " + author + " | " + publisher + " | " + price + " | " + desc;
-	}
+    public Book(String isbn, String title, String author, String publisher, int price, String desc) {
+        super();
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.price = price;
+        this.desc = desc;
+    }
 
-	public String getIsbn() {
-		return isbn;
-	}
+    public Book() {
+        super();
+    }
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
+    @Override
+    public String toString() {
+        return isbn + " | " + title + " | " + author + " | " + publisher + " | " + price + " | " + desc;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getIsbn() {
+        return isbn;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-	public String getAuthor() {
-		return author;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getPublisher() {
-		return publisher;
-	}
+    public String getAuthor() {
+        return author;
+    }
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-	public int getPrice() {
-		return price;
-	}
+    public String getPublisher() {
+        return publisher;
+    }
 
-	public void setPrice(int price) {
-		this.price = price;
-	}
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
 
-	public String getDesc() {
-		return desc;
-	}
+    public int getPrice() {
+        return price;
+    }
 
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    @Override
+    public int compareTo(Book o) {
+        return getIsbn().compareTo(o.getIsbn());
+    }
 
 }

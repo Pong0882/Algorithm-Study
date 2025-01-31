@@ -19,4 +19,9 @@ public interface IBookManager {
     int getTotalPrice();
 
     double getPriceAvg();
+
+    Book[] getListSortByIsbn();
+
+    Book[] sortDescByIsbn();
+
 }
