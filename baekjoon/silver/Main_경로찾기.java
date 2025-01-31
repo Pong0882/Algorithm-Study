@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main_경로찾기 {
+
     private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     private static StringTokenizer st;
     private static StringBuilder sb = new StringBuilder();
@@ -23,7 +24,6 @@ public class Main_경로찾기 {
         // for (int i = 0; i < N; i++) {
         // paper[i] = Integer.parseInt(st.nextToken());
         // }
-
         N = Integer.parseInt(br.readLine());
 
         paper = new int[N][N];
@@ -34,11 +34,10 @@ public class Main_경로찾기 {
                 paper[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        visited = new boolean[N];
         for (int i = 0; i < N; i++) {
+            visited = new boolean[N];
             Path(i, i);
         }
-
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 sb.append(result[i][j] + " ");
@@ -52,14 +51,13 @@ public class Main_경로찾기 {
         if (visited[point]) {
             return;
         }
-
         for (int j = 0; j < N; j++) {
             if (paper[point][j] == 1) {
                 result[x][j] = 1;
-                // System.out.println(x + " " + j);
                 visited[point] = true;
+                // System.out.println(x + " " + j);
                 Path(x, j);
-                visited[point] = false;
+                // visited[point] = false;
             }
         }
     }
