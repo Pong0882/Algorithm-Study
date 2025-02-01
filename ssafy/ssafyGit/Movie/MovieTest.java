@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.movie;
+package ssafy.ssafygit.movie;
 
 public class MovieTest {
     public static void main(String[] args) {

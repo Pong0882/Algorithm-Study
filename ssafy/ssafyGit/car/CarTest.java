@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.car;
+package ssafy.ssafygit.car;
 
 public class CarTest {
     public static void main(String[] args) {

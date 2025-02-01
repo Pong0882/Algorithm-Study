@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.book;
+package ssafy.ssafygit.book;
 
 public class Magazine extends Book {
 

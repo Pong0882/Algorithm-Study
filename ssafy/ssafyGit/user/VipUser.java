@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.user;
+package ssafy.ssafygit.user;
 
 public class VipUser extends User {
 

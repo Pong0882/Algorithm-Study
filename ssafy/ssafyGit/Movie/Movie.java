@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.movie;
+package ssafy.ssafygit.movie;
 
 public class Movie {
     private int id;

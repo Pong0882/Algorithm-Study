@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.car;
+package ssafy.ssafygit.car;
 
 public class CarManager {
     // 관리하는 자동차 정보 배열 크기 100

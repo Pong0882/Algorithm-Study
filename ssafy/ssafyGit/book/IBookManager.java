@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.book;
+package ssafy.ssafygit.book;
 
 public interface IBookManager {
 
@@ -12,15 +12,15 @@ public interface IBookManager {
 
     Book[] searchByTitle(String title);
 
-    Magazine[] getMagazines();
-
     Book[] getBooks();
 
-    int getTotalPrice();
+    Magazine[] getMagazines();
+
+    int getTotolPrice();
 
     double getPriceAvg();
 
-    Book[] getListSortByIsbn();
+    Book[] sortByIsbn();
 
     Book[] sortDescByIsbn();
 

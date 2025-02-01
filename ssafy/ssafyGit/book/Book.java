@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.book;
+package ssafy.ssafygit.book;
 
 public class Book implements Comparable<Book> {
 
@@ -78,7 +78,7 @@ public class Book implements Comparable<Book> {
 
     @Override
     public int compareTo(Book o) {
-        return getIsbn().compareTo(o.getIsbn());
+        return this.isbn.compareTo(o.isbn); // ISBN 기준 오름차순 정렬
     }
 
 }

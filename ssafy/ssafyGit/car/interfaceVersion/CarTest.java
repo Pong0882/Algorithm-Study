@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.car.interfaceVersion;
+package ssafy.ssafygit.car.interfaceVersion;
 
 public class CarTest {
     public static void main(String[] args) {
