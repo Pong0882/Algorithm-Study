@@ -1,8 +1,9 @@
-package ssafy.ssafygit.product;
+package ssafy.ssafygit.product.interfaceversion;
 
 public class ProductTest {
     public static void main(String[] args) {
-        ProductManager pm = new ProductManager();
+        IProductManager pm = ProductManagerImpl.getInstance();
+        IProductManager pm2 = ProductManagerImpl.getInstance();
 
         Product p1 = new Product("1", "제품1", 10000, 10, "A", "~~~");
         Product p2 = new Product("2", "제품2", 30000, 5, "B", "~~~~~");
@@ -25,6 +26,10 @@ public class ProductTest {
         pm.addProduct(refrigerator2);
         pm.addProduct(refrigerator3);
         pm.addProduct(refrigerator4);
+        pm2.addProduct(p1);
+
+        // System.out.println(pm2.getTotalPrice());
+        // 해당 클래스의 객체가 하나로 유지된다...
 
         System.out.println("--------------냉장고 목록-----------------------------");
         Refrigerator[] p = pm.getRefrigerators();
@@ -43,5 +48,6 @@ public class ProductTest {
         for (Product product : pp) {
             System.out.println(product);
         }
+        System.out.println(pm.getTotalPrice());
     }
 }

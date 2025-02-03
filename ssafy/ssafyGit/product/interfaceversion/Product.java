@@ -1,4 +1,4 @@
-package ssafy.ssafygit.product;
+package ssafy.ssafygit.product.interfaceversion;
 
 public class Product {
 
