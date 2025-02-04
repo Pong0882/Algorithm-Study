@@ -1,4 +1,4 @@
-package ssafy.ssafygit.user;
+package ssafy.ssafyGit.user;
 
 public class UserTest {
 

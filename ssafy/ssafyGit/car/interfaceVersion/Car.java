@@ -1,4 +1,4 @@
-package ssafy.ssafygit.car.interfaceversion;
+package ssafy.ssafyGit.car.interfaceversion;
 
 public class Car {
     private String VIN;

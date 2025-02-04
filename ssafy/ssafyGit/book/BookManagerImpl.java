@@ -1,4 +1,4 @@
-package ssafy.ssafygit.book;
+package ssafy.ssafyGit.book;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package ssafy.ssafygit.product.interfaceversion;
+package ssafy.ssafyGit.product.interfaceversion;
 
 public class ProductTest {
     public static void main(String[] args) {

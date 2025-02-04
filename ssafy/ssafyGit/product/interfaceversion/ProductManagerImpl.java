@@ -1,4 +1,4 @@
-package ssafy.ssafygit.product.interfaceversion;
+package ssafy.ssafyGit.product.interfaceversion;
 
 import java.util.ArrayList;
 import java.util.Arrays;

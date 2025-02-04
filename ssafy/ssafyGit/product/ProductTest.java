@@ -1,4 +1,4 @@
-package ssafy.ssafygit.product;
+package ssafy.ssafyGit.product;
 
 public class ProductTest {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package ssafy.ssafygit;
+package ssafy.ssafyGit;
 
 import java.io.BufferedReader;
 import java.io.IOException;

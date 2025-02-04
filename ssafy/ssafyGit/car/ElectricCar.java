@@ -1,4 +1,4 @@
-package ssafy.ssafygit.car;
+package ssafy.ssafyGit.car;
 
 public class ElectricCar extends Car {
     // 전기자동차 배터리 량

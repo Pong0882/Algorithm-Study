@@ -1,4 +1,4 @@
-package ssafy.ssafygit.product.interfaceversion;
+package ssafy.ssafyGit.product.interfaceversion;
 
 public class Refrigerator extends Product {
     private String category;

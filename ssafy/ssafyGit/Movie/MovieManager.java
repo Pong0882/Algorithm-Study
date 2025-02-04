@@ -1,4 +1,4 @@
-package ssafy.ssafygit.movie;
+package ssafy.ssafyGit.movie;
 
 import java.util.Arrays;
 

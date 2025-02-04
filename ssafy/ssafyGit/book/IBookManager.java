@@ -1,4 +1,4 @@
-package ssafy.ssafygit.book;
+package ssafy.ssafyGit.book;
 
 public interface IBookManager {
 
