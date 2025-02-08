@@ -3,8 +3,10 @@ package baekjoon.silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_효율적인해킹v2 {
@@ -12,7 +14,8 @@ public class Main_효율적인해킹v2 {
     private static List<Integer>[] list;
 
     private static int[] result;
-    private static boolean[] visited;
+    // private static boolean[] visited;
+    private static int[] visited;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -33,16 +36,37 @@ public class Main_효율적인해킹v2 {
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
 
-            list[a].add(b);
+            list[b].add(a);
         }
 
         result = new int[N + 1];
+        visited = new int[N + 1];
         int max = 0;
 
         for (int i = 1; i < N + 1; i++) {
-            visited = new boolean[N + 1];
-            dfs(i);
-            max = Math.max(max, result[i]);
+            Queue<Integer> que = new ArrayDeque<>();
+            // if (list[i].isEmpty()) {
+            // continue;
+            // }
+
+            int cnt = 0;
+            que.offer(i);
+            // visited[i] = i;
+            while (!que.isEmpty()) {
+                int cur = que.poll();
+
+                for (int j = 0; j < list[cur].size(); j++) {
+                    int next = list[cur].get(j);
+                    if (visited[next] != i) {
+                        visited[next] = i;
+                        que.offer(next);
+                        cnt++;
+                    }
+                }
+            }
+            result[i] = cnt;
+            max = Math.max(max, cnt);
+            // que.clear();
         }
 
         StringBuilder sb = new StringBuilder();
@@ -52,15 +76,5 @@ public class Main_효율적인해킹v2 {
             }
         }
         System.out.println(sb);
-    }
-
-    private static void dfs(int cur) {
-        visited[cur] = true;
-        for (int next : list[cur]) {
-            if (!visited[next]) {
-                result[next]++;
-                dfs(next);
-            }
-        }
     }
 }
