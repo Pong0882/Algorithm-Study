@@ -72,7 +72,7 @@ public class Main_효율적인해킹 {
                 // } // 아니 이거 이러다가 짧은 루트있으면 망 아닌가?
                 int cur = que.poll();
                 // 향상된 for문 대신 일반 for문을 사용하여 약간의 오버헤드를 줄일 수 있음
-                for (int j = 0, size = list[cur].size(); j < size; j++) {
+                for (int j = 0; j < list[cur].size(); j++) {
                     int next = list[cur].get(j);
                     if (visited[next] != i) {
                         visited[next] = i;
