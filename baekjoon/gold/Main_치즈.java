@@ -32,6 +32,12 @@ public class Main_치즈 {
         // 생각2
         // 치즈가 다 사라졌을때 반복을 끝낼 법을 생각해보니 전체 치즈수를 세서 빼자.
         // 그럼 cheezetmp로 마지막 치즈를 기억은 해야겠다.
+
+        // 코딩 후
+        // 치즈가 있던 곳을 바로 0으로 만들어버리면 BFS돌리는 중에 다시 들어가버린다..
+        // 따로 치즈 위치를 기억해뒀다가 옮기면서 0으로 바꾸고 치즈카운트를 줄여주자
+        // 0으로 바꾸면서 bfs에 넣어준다.
+
         st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
