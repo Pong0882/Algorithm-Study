@@ -22,20 +22,17 @@ public class Main_후위표기식2 {
         StringTokenizer st;
 
         N = Integer.parseInt(br.readLine());
+
         char[] c = br.readLine().toCharArray();
         check = new int[N];
+        for (int i = 0; i < N; i++) {
+            check[i] = Integer.parseInt(br.readLine());
+        }
+        // check = new int[N];
         arr = new int[c.length];
         for (int i = 0; i < c.length; i++) {
             if (c[i] >= 'A' && c[i] <= 'Z') {
-                int tmp;
-                if (check[c[i] - 'A'] != 0) {
-                    tmp = Integer.parseInt(br.readLine());
-                    check[c[i] - 'A'] = tmp;
-                } else {
-                    tmp = check[c[i] - 'A'];
-                }
-                // map.put(c[i] - 'A', tmp);
-                arr[i] = tmp;
+                arr[i] = check[c[i] - 'A'];
             } else {
                 arr[i] = c[i] - 50;
             }
