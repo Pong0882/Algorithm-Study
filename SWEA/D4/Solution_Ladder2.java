@@ -50,7 +50,7 @@ public class Solution_Ladder2 {
                 int left = nc - 1;
                 if (left >= 0 && ladder[nr][left] == 1) {
                     d = 1;
-                }
+                }  
                 // 오른쪽체크
                 int right = nc + 1;
                 if (right < size && ladder[nr][right] == 1) {
