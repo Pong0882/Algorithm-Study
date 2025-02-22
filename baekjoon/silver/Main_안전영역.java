@@ -34,8 +34,8 @@ public class Main_안전영역 {
         result = 1;
         for (int h = 1; h < height; h++) { // 수위
             int cnt = 0;
-            for (int i = 0; i < args.length; i++) {
-                for (int j = 0; j < args.length; j++) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
                     if (paper[i][j] > h && land[i][j] < h) {
                         cnt++;
                         Queue<Integer[]> queue = new ArrayDeque<>();
@@ -51,9 +51,15 @@ public class Main_안전영역 {
                                 if (!check(nr, nc)) {
                                     continue;
                                 }
-                                land[nr][nc] = h;
-                                queue.add(new Integer[] { nr, nc });
+                                if (paper[nr][nc] > h && land[nr][nc] < h) {
+                                    land[nr][nc] = h;
+                                    queue.add(new Integer[] { nr, nc });
+                                }
                             }
+                            // System.out.println("here " + h + " " + r + " " + c + " " + cnt);
+                            // for (int k = 0; k < N; k++) {
+                            // System.out.println(Arrays.toString(land[k]));
+                            // }
                         }
                     }
                 }
