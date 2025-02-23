@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main_불 {
+public class Main_불v2 {
     static StringBuilder sb = new StringBuilder();
     static int R, C;
     static int[][] paper;
@@ -21,43 +21,38 @@ public class Main_불 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        int T = Integer.parseInt(br.readLine());
-        for (int TC = 0; TC < T; TC++) {
-            st = new StringTokenizer(br.readLine());
-            C = Integer.parseInt(st.nextToken());
-            R = Integer.parseInt(st.nextToken());
-            paper = new int[R][C];
+        st = new StringTokenizer(br.readLine());
+        R = Integer.parseInt(st.nextToken());
+        C = Integer.parseInt(st.nextToken());
+        paper = new int[R][C];
 
-            for (int i = 0; i < R; i++) {
-                char[] c = br.readLine().toCharArray();
-                for (int j = 0; j < C; j++) {
-                    int tmp = c[j];
-                    if (tmp == '#') {
-                        paper[i][j] = 1000000;
-                    } else if (tmp == '*') {
-                        paper[i][j] = -1;
-                        fire.add(new Integer[] { i, j });
-                    } else if (tmp == '.') {
-                        paper[i][j] = 0;
-                    } else if (tmp == '@') {
-                        sr = i;
-                        sc = j;
-                        m.add(new Integer[] { i, j });
-                    }
+        for (int i = 0; i < R; i++) {
+            char[] c = br.readLine().toCharArray();
+            for (int j = 0; j < C; j++) {
+                int tmp = c[j];
+                if (tmp == '#') {
+                    paper[i][j] = 1000000;
+                } else if (tmp == 'F') {
+                    paper[i][j] = -1;
+                    fire.add(new Integer[] { i, j });
+                } else if (tmp == '.') {
+                    paper[i][j] = 0;
+                } else if (tmp == 'J') {
+                    sr = i;
+                    sc = j;
+                    m.add(new Integer[] { i, j });
                 }
             }
-            goFire();
-            // for (int i = 0; i < R; i++) {
-            // System.out.println(Arrays.toString(paper[i]));
-            // }
-            int result = goMan();
-            sb.append(result == -1 ? "IMPOSSIBLE" : result - 1).append("\n");
-
-            // for (int i = 0; i < R; i++) {
-            // System.out.println(Arrays.toString(paper[i]));
-            // }}
         }
-        System.out.println(sb);
+        goFire();
+        // for (int i = 0; i < R; i++) {
+        // System.out.println(Arrays.toString(paper[i]));
+        // }
+        int result = goMan();
+        System.out.println(result == -1 ? "IMPOSSIBLE" : result - 1);
+        // for (int i = 0; i < R; i++) {
+        // System.out.println(Arrays.toString(paper[i]));
+        // }
     }
 
     private static int goMan() {
