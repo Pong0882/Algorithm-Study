@@ -3,7 +3,6 @@ package baekjoon.gold;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main_야구공 {
@@ -28,14 +27,14 @@ public class Main_야구공 {
             }
         }
         perm(0);
-        System.out.println(ccc);
+        // System.out.println(ccc);
         System.out.print(result);
     }
 
     private static void perm(int cnt) throws IOException {
         if (cnt == 9) {
             // System.out.println(Arrays.toString(select));
-            ccc++;
+            // ccc++;
             gogo();
             return;
         }
@@ -44,14 +43,14 @@ public class Main_야구공 {
                 continue;
             }
             if (cnt == 3) {
-                select[cnt++] = 0;
+                select[cnt] = 0;
                 perm(cnt + 1);
-            } else {
-                select[cnt] = i;
-                visited[i] = true;
-                perm(cnt + 1);
-                visited[i] = false;
+                return;
             }
+            select[cnt] = i;
+            visited[i] = true;
+            perm(cnt + 1);
+            visited[i] = false;
         }
     }
 
