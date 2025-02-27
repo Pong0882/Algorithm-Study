@@ -43,6 +43,7 @@ public class Solution_프로세서 {
         int r = tmp[0];
         int c = tmp[1];
         System.out.println("r:" + r + " / c: " + c + " / idx : " + idx + " / d : " + d);
+        
         go(idx + 1, 0);
         go(idx + 1, 1);
         go(idx + 1, 2);
