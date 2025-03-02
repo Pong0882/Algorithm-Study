@@ -23,8 +23,9 @@ public class Main_뮤탈리스크 {
         st = new StringTokenizer(br.readLine());
         paper = new int[3][60];
         for (int i = 0; i < 3; i++) {
-            if (st.hasMoreTokens())
-                // paper[i] = Integer.parseInt(st.nextToken());
+            if (st.hasMoreTokens()) {
+            }
+            // paper[i] = Integer.parseInt(st.nextToken());
         }
         System.out.println(Arrays.toString(paper));
         ArrayDeque<Integer[]> que = new ArrayDeque<>();
