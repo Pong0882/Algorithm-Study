@@ -34,19 +34,20 @@ public class Main_보물섬v2 {
         // for (int i = 0; i < R; i++) {
         // System.out.println(Arrays.toString(paper[i]));
         // }
-        ///////////////////////////////////
-        visited = new bool[R][C];
-        for (int i = 0; i < R; i++) {
-            for (int j = 0; j < C; j++) {
-                if (paper[i][j] == 0) {
-                    visited[i][j] = true;
+        // ///////////////////////////////////
+        // visited = new bool[R][C];
+        // for (int i = 0; i < R; i++) {
+        // for (int j = 0; j < C; j++) {
+        // if (paper[i][j] == 0) {
+        // visited[i][j] = true;
 
-                }
-            }
-        }
-    }
+        // }
+        // }
+        // }
+        // }
 
-    private static boolean check(int nr, int nc) {
-        return nr >= 0 && nc >= 0 && nr < R && nc < C;
+        // private static boolean check(int nr, int nc) {
+        // return nr >= 0 && nc >= 0 && nr < R && nc < C;
+        // }
     }
 }
