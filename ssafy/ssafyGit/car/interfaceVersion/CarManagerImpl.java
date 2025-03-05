@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.car.interfaceversion;
+package ssafy.ssafyGit.car.interfaceVersion;
 
 public class CarManagerImpl implements ICarManager {
     // 관리하는 자동차 정보 배열 크기 100

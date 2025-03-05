@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.car.interfaceversion;
+package ssafy.ssafyGit.car.interfaceVersion;
 
 public class ElectricCar extends Car {
     // 전기자동차 배터리 량

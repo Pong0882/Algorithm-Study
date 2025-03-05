@@ -1,4 +1,4 @@
-package ssafy.ssafyGit.car.interfaceversion;
+package ssafy.ssafyGit.car.interfaceVersion;
 
 public interface ICarManager {
     /**

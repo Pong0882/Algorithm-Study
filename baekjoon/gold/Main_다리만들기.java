@@ -220,4 +220,3 @@ public class Main_다리만들기 {
         return nr >= 0 && nc >= 0 && nr < N && nc < M;
     }
 }
-
