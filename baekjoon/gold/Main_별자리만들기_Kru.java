@@ -1,7 +1,5 @@
 package baekjoon.gold;
 
-package baekjoon.gold;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
