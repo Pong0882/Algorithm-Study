@@ -30,5 +30,6 @@ public class BasicFrame {
         // paper[i][j] = Integer.parseInt(st.nextToken());
         // }
         // }
+
     }
 }
