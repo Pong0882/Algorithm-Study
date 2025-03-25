@@ -20,7 +20,7 @@ public class Main_prac {
 
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-
+        // check
         paper = new int[N][M];
         visited = new int[N][M][2];
 
