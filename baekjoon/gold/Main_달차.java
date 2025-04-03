@@ -82,7 +82,7 @@ public class Main_달차 {
             for (int i = 0; i < 4; i++) {
                 int nr = r + dr[i];
                 int nc = c + dc[i];
-                if (!outCheck(nr, nc) || visited[key][nr][nc] || paper[nr][nc] == -2) { // 못가
+                if (!outCheck(nr, nc) || visited[key][nr][nc] || paper[nr][nc] == -2) { // 못가!
                     continue;
                 }
                 if (paper[nr][nc] != 0 && paper[nr][nc] != -1) {
@@ -100,7 +100,7 @@ public class Main_달차 {
                         int keyName = 1 << keyIndex;
                         int newKey = key;
                         if ((newKey & keyName) == 0) {
-                            newKey |= keyName; 
+                            newKey |= keyName;
                         }
                         q.add(new Integer[] { nr, nc, time + 1, newKey });
                         visited[newKey][nr][nc] = true;
