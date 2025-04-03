@@ -13,7 +13,7 @@ public class Main_달차 {
     static int[][] paper;
     static boolean[][][] visited;
     static int result;
-    static int key;
+    // static int key;
     static ArrayDeque<Integer[]> q = new ArrayDeque<>();
     // static boolean[] getKey;
     static int[] dr = { 1, -1, 0, 0 };
@@ -39,12 +39,13 @@ public class Main_달차 {
         map.put((int) 'D', 13);
         map.put((int) 'E', 14);
         map.put((int) 'F', 15);
-        for (int i = 0; i < C; i++) {
+        for (int i = 0; i < R; i++) {
             char[] c = br.readLine().toCharArray();
             for (int j = 0; j < C; j++) {
                 switch (c[j]) {
                     case '0':
-                        q.add(new Integer[] { i, j, 0 }); // R, C, 시간
+                        q.add(new Integer[] { i, j, 0, 0 }); // R, C, 시간, key
+                        visited[0][i][j] = true;
                         break;
                     case '1':
                         paper[i][j] = -1;
@@ -61,38 +62,55 @@ public class Main_달차 {
                 }
             }
         }
-        for (int i = 0; i < R; i++) {
-            System.out.println(Arrays.toString(paper[i]));
-        }
+        // for (int i = 0; i < R; i++) {
+        // System.out.println(Arrays.toString(paper[i]));
+        // }
         // getKey = new boolean[6];
         while (!q.isEmpty()) {
             Integer[] cur = q.poll();
             int r = cur[0];
             int c = cur[1];
             int time = cur[2];
-            if (paper[r][c] == -1) {
+            int key = cur[3];
+            // br.readLine();
+
+            System.out.println(key + " (" + r + ", " + c + ") " + time);
+            if (paper[r][c] == -1) { // 탈출~
                 System.out.println(time);
                 return;
             }
             for (int i = 0; i < 4; i++) {
                 int nr = r + dr[i];
                 int nc = c + dc[i];
-                if (!outCheck(nr, nc) || visited[key][nr][nc] || paper[nr][nc] == -2) {
+                if (!outCheck(nr, nc) || visited[key][nr][nc] || paper[nr][nc] == -2) { // 못가
                     continue;
                 }
-                if (paper[nr][nc] != 0) {
-                    int what = map.get(paper[nr][nc]);
-                    int tmp = key;
-                    if (what > 9) { // 문
-                    } else { // 열쇠
-                        // int index =
-                        if ((tmp & (1 << what)) == 0) {
-
+                if (paper[nr][nc] != 0 && paper[nr][nc] != -1) {
+                    int keyIndex = map.get(paper[nr][nc]);
+                    // System.out.println(keyIndex);
+                    if (keyIndex > 9) { // 문 발견!!!
+                        int keyName = 1 << (keyIndex - 10); // 어떤 문이니~~???
+                        if ((key & keyName) == 0) { // 열쇠 없다~
+                            continue;
+                        } else { // 열쇠 있다!!!
+                            q.add(new Integer[] { nr, nc, time + 1, key });
+                            visited[key][nr][nc] = true;
                         }
+                    } else { // 열쇠 발견!
+                        int keyName = 1 << keyIndex; // 어떤 열쇠니~~???
+                        if ((key & keyName) == 0) { // 열쇠 없었네?
+                            key += keyName;
+                        }
+                        q.add(new Integer[] { nr, nc, time + 1, key });
+                        visited[key][nr][nc] = true;
                     }
+                } else {
+                    q.add(new Integer[] { nr, nc, time + 1, key });
+                    visited[key][nr][nc] = true;
                 }
             }
         }
+        System.out.println(-1);
     }
 
     private static boolean outCheck(int r, int c) {
