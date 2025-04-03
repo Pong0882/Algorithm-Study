@@ -74,7 +74,7 @@ public class Main_달차 {
             int key = cur[3];
             // br.readLine();
 
-            System.out.println(key + " (" + r + ", " + c + ") " + time);
+            // System.out.println(key + " (" + r + ", " + c + ") " + time);
             if (paper[r][c] == -1) { // 탈출~
                 System.out.println(time);
                 return;
@@ -97,12 +97,13 @@ public class Main_달차 {
                             visited[key][nr][nc] = true;
                         }
                     } else { // 열쇠 발견!
-                        int keyName = 1 << keyIndex; // 어떤 열쇠니~~???
-                        if ((key & keyName) == 0) { // 열쇠 없었네?
-                            key += keyName;
+                        int keyName = 1 << keyIndex;
+                        int newKey = key;
+                        if ((newKey & keyName) == 0) {
+                            newKey |= keyName; 
                         }
-                        q.add(new Integer[] { nr, nc, time + 1, key });
-                        visited[key][nr][nc] = true;
+                        q.add(new Integer[] { nr, nc, time + 1, newKey });
+                        visited[newKey][nr][nc] = true;
                     }
                 } else {
                     q.add(new Integer[] { nr, nc, time + 1, key });
