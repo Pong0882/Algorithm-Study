@@ -1,39 +1,37 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        // 입력 세팅
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        StringBuilder sb = new StringBuilder();
-        // sb.append(i).append(' ');
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int bag = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken()); // 물건 수
+        int K = Integer.parseInt(st.nextToken()); // 최대 무게
 
-        int[] size = new int[n + 1];
-        int[] value = new int[n + 1];
+        int[] weight = new int[N];
+        int[] value = new int[N];
 
-        for (int i = 0; i < n; i++) {
+        // 각 물건의 무게와 가치 입력
+        for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            size[i + 1] = Integer.parseInt(st.nextToken());
-            value[i + 1] = Integer.parseInt(st.nextToken());
+            weight[i] = Integer.parseInt(st.nextToken());
+            value[i] = Integer.parseInt(st.nextToken());
         }
-        ////////////////////////////////////////////////////////
 
-        int[][] culc = new int[n + 1][bag + 1];
-        int tmp = 0;
+        int[] dp = new int[K + 1];
 
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= bag; j++) {
-                if (j - size[i] >= 0) {
-                    culc[i][j] = Math.max(value[i] + culc[i - 1][j - size[i]], culc[i - 1][j]);
-                } else {
-                    culc[i][j] = culc[i - 1][j];
-                }
+        // 0/1 Knapsack (1차원 최적화)
+        for (int i = 0; i < N; i++) {
+            for (int w = K; w >= weight[i]; w--) {
+                dp[w] = Math.max(dp[w], dp[w - weight[i]] + value[i]);
             }
         }
-        System.out.println(culc[n][bag]);
-    };
+
+        // 결과 출력
+        System.out.println(dp[K]);
+    }
 }
