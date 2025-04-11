@@ -1,74 +1,74 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.io.*;
 
 public class Main_주현 {
-
-    static int[] weight, walls, min;
-    static int N, M, inf;
-    static long K, sum;
-
     public static void main(String[] args) throws Exception {
 
         // 입력받기
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        K = Integer.parseInt(st.nextToken());
-        inf = 0;
-        sum = 0;
-        weight = new int[N];
-        walls = new int[M];
-        min = new int[M]; // 공사장 M개, 그럼 M개의 그룹이 생김
+        BufferedReader brr = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(brr.readLine());
 
-        st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++) {
-            weight[i] = Integer.parseInt(st.nextToken());
-            inf = inf < weight[i] ? weight[i] : inf;
-        }
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
 
-        // 공사하는 곳이 0개이거나 1개이면 그냥 무조건 YES
-        if (M == 1 || M == 0) {
-            System.out.println("YES");
-            return;
-        }
+        int[][] map = new int[n][m];
 
-        // wall[i] 까지 가면 다음으로 못넘어감
-        for (int i = 0; i < M; i++) {
-            st = new StringTokenizer(br.readLine());
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
-            if ((a == 1 && b == N) || (a == N && b == 1)) {
-                walls[i] = 0;
-            } else {
-                walls[i] = a < b ? a : b;
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(brr.readLine());
+            for (int j = 0; j < m; j++) {
+                map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        Arrays.sort(walls);
 
-        // M개의 그룹으로 갈 수 있는 최소의 돌맹이 개수 찾기
-        int wall = walls[0];
-        for (int i = 0; i < M; i++) {
-            min[i] = inf;
-            while (wall < walls[(i + 1) % M]) {
-                min[i] = weight[wall] < min[i] ? weight[wall] : min[i];
-                wall++;
-                wall %= N;
+        int[][] ar = { { 0, 0, 0 }, { 1, 2, 3 } };
+        int[][] ac = { { 1, 2, 3 }, { 0, 0, 0 } };
+
+        int[][] br = { { 0, 1, 1 } };
+        int[][] bc = { { 1, 0, 1 } };
+
+        int[][] cr = { { -1, -2, -2 }, { -1, -2, -2 }, { 0, 0, -1 }, { 0, 0, 1 }, { 1, 2, 2 }, { 1, 2, 2 }, { 0, 0, 1 },
+                { 0, 0, -1 } };
+        int[][] cc = { { 0, 0, -1 }, { 0, 0, 1 }, { 1, 2, 2 }, { 1, 2, 2 }, { 0, 0, 1 }, { 0, 0, -1 }, { -1, -2, -2 },
+                { -1, -2, -2 } };
+
+        int[][] dr = { { -1, -1, -2 }, { -1, -1, -2 }, { 0, -1, -1 }, { 0, 1, 1 } };
+        int[][] dc = { { 0, -1, -1 }, { 0, 1, 1 }, { 1, 1, 2 }, { 1, 1, 2 } };
+
+        int[][] er = { { -1, -1, -2 }, { 0, 1, 0 }, { 1, 1, 2 }, { 0, -1, 0 } };
+        int[][] ec = { { 0, 1, 0 }, { 1, 1, 2 }, { 0, -1, 0 }, { -1, -1, -2 } };
+
+        int[] shape = { 2, 1, 8, 4, 4 };
+
+        int[][][] rrr = { ar, br, cr, dr, er };
+        int[][][] ccc = { ac, bc, cc, dc, ec };
+        int ans = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                for (int k = 0; k < 5; k++) {
+                    for (int l = 0; l < shape[k]; l++) {
+                        int t = map[i][j];
+                        boolean flag = true;
+                        for (int p = 0; p < 3; p++) {
+                            int r = i + rrr[k][l][p];
+                            int c = j + ccc[k][l][p];
+                            if (r < 0 || c < 0 || r >= n || c >= m) {
+                                flag = false;
+                                break;
+                            }
+                            t += map[r][c];
+                        }
+                        if (flag)
+                            ans = Math.max(ans, t);
+                    }
+                }
             }
-            sum += min[i];
         }
-//        System.out.println(Arrays.toString(min));
 
-        // 최소의 합이 가진 개수보다 작으면 갈YES, 아니면 NO
-        if (sum <= K) {
-            System.out.println("YES");
-        } else {
-            System.out.println("NO");
-        }
+        bw.write(ans + "");
+        bw.flush();
+        bw.close();
 
     }
-
 }
