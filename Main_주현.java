@@ -1,74 +1,71 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
-public class Main_주현 {
-    public static void main(String[] args) throws Exception {
+public class Main {
+    static int N;
+    static int[][] pay;
+    static int[][] dp;
+    static int visited; // bit
+    static int inf = Integer.MAX_VALUE / 100; // 오버플로우 방지를 위한 /100
+    static BufferedReader br;
 
-        // 입력받기
-        BufferedReader brr = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(brr.readLine());
+    public static void main(String[] args) throws IOException {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
 
-        int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
+        pay = new int[N][N];
+        dp = new int[1 << N][N];
 
-        int[][] map = new int[n][m];
-
-        for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(brr.readLine());
-            for (int j = 0; j < m; j++) {
-                map[i][j] = Integer.parseInt(st.nextToken());
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                pay[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
-        int[][] ar = { { 0, 0, 0 }, { 1, 2, 3 } };
-        int[][] ac = { { 1, 2, 3 }, { 0, 0, 0 } };
-
-        int[][] br = { { 0, 1, 1 } };
-        int[][] bc = { { 1, 0, 1 } };
-
-        int[][] cr = { { -1, -2, -2 }, { -1, -2, -2 }, { 0, 0, -1 }, { 0, 0, 1 }, { 1, 2, 2 }, { 1, 2, 2 }, { 0, 0, 1 },
-                { 0, 0, -1 } };
-        int[][] cc = { { 0, 0, -1 }, { 0, 0, 1 }, { 1, 2, 2 }, { 1, 2, 2 }, { 0, 0, 1 }, { 0, 0, -1 }, { -1, -2, -2 },
-                { -1, -2, -2 } };
-
-        int[][] dr = { { -1, -1, -2 }, { -1, -1, -2 }, { 0, -1, -1 }, { 0, 1, 1 } };
-        int[][] dc = { { 0, -1, -1 }, { 0, 1, 1 }, { 1, 1, 2 }, { 1, 1, 2 } };
-
-        int[][] er = { { -1, -1, -2 }, { 0, 1, 0 }, { 1, 1, 2 }, { 0, -1, 0 } };
-        int[][] ec = { { 0, 1, 0 }, { 1, 1, 2 }, { 0, -1, 0 }, { -1, -1, -2 } };
-
-        int[] shape = { 2, 1, 8, 4, 4 };
-
-        int[][][] rrr = { ar, br, cr, dr, er };
-        int[][][] ccc = { ac, bc, cc, dc, ec };
-        int ans = 0;
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                for (int k = 0; k < 5; k++) {
-                    for (int l = 0; l < shape[k]; l++) {
-                        int t = map[i][j];
-                        boolean flag = true;
-                        for (int p = 0; p < 3; p++) {
-                            int r = i + rrr[k][l][p];
-                            int c = j + ccc[k][l][p];
-                            if (r < 0 || c < 0 || r >= n || c >= m) {
-                                flag = false;
-                                break;
-                            }
-                            t += map[r][c];
-                        }
-                        if (flag)
-                            ans = Math.max(ans, t);
-                    }
-                }
-            }
+        for (int i = 0; i < 1 << N; i++) {
+            Arrays.fill(dp[i], -1);
         }
 
-        bw.write(ans + "");
-        bw.flush();
-        bw.close();
+        // 입력 및 초기화 완료
+        System.out.println(perm(1, 0, 0, 1 << 0));
 
     }
+
+    private static int perm(int depth, int start, int end, int visited) throws IOException {
+
+        if (depth == N) {
+            if (pay[end][start] == 0)
+                return inf;
+            return dp[visited][end] = pay[end][start]; // 이거 꼭 저장 안해도 됨(어차피 하나마나)
+        }
+        if (dp[visited][end] != -1) {
+            return dp[visited][end];
+        }
+        dp[visited][end] = inf;
+        for (int i = 0; i < N; i++) {
+            if ((visited & 1 << i) != 0)
+                continue;
+            if (pay[end][i] == 0)
+                continue;
+            int temp = perm(depth + 1, start, i, visited | 1 << i);
+
+            if (pay[end][i] + temp < dp[visited][end]) {
+                dp[visited][end] = pay[end][i] + temp;
+            }
+        }
+        return dp[visited][end];
+
+    }
+
+    private static void printdp() {
+        for (int i = 0; i < 1 << N; i++) {
+            System.out.printf("%4s", Integer.toBinaryString(i));
+            System.out.println(Arrays.toString(dp[i]));
+        }
+
+    }
+
 }
