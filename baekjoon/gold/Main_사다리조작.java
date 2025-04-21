@@ -40,11 +40,11 @@ public class Main_사다리조작 {
 
     private static void combi(int cnt, int start) {
         if (cnt <= 3) {
-            // System.out.println(Arrays.toString(select));
-            // for (int j = 0; j < H + 1; j++) {
-            // System.out.println(Arrays.toString(radder[j]));
-            // }
-            // System.out.println();
+            System.out.println(Arrays.toString(select));
+            for (int j = 0; j < H + 1; j++) {
+                System.out.println(Arrays.toString(radder[j]));
+            }
+            System.out.println();
             check(cnt);
         }
         if (cnt == 3) {
