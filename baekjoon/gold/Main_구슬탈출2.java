@@ -63,11 +63,8 @@ public class Main_구슬탈출2 {
                 int nrc = rc + dc[i];
                 int nbr = br + dr[i];
                 int nbc = bc + dc[i];
-                if (!check(nrr, nrc)) {
-                    continue;
-                }
             }
         }
-
     }
+
 }

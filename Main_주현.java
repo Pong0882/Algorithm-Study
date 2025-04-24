@@ -1,72 +1,69 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main_주현 {
+public class Main {
+    static int N;
+    static int[][] pay;
+    static int[][] dp;
+    static int visited; // bit
+    static int inf = Integer.MAX_VALUE / 100; // 오버플로우 방지를 위한 /100
+    static BufferedReader br;
 
-    static int[] weight, walls, min;
-    static int N, M, inf;
-    static long K, sum;
+    public static void main(String[] args) throws IOException {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
 
-    public static void main(String[] args) throws Exception {
+        pay = new int[N][N];
+        dp = new int[1 << N][N];
 
-        // 입력받기
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        K = Integer.parseInt(st.nextToken());
-        inf = 0;
-        sum = 0;
-        weight = new int[N];
-        walls = new int[M];
-        min = new int[M]; // 공사장 M개, 그럼 M개의 그룹이 생김
-
-        st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            weight[i] = Integer.parseInt(st.nextToken());
-            inf = inf < weight[i] ? weight[i] : inf;
-        }
-
-        // 공사하는 곳이 0개이거나 1개이면 그냥 무조건 YES
-        if (M == 1 || M == 0) {
-            System.out.println("YES");
-            return;
-        }
-
-        // wall[i] 까지 가면 다음으로 못넘어감
-        for (int i = 0; i < M; i++) {
-            st = new StringTokenizer(br.readLine());
-            int a = Integer.parseInt(st.nextToken());
-            int b = Integer.parseInt(st.nextToken());
-            if ((a == 1 && b == N) || (a == N && b == 1)) {
-                walls[i] = 0;
-            } else {
-                walls[i] = a < b ? a : b;
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                pay[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        Arrays.sort(walls);
-
-        // M개의 그룹으로 갈 수 있는 최소의 돌맹이 개수 찾기
-        int wall = walls[0];
-        for (int i = 0; i < M; i++) {
-            min[i] = inf;
-            while (wall < walls[(i + 1) % M]) {
-                min[i] = weight[wall] < min[i] ? weight[wall] : min[i];
-                wall++;
-                wall %= N;
-            }
-            sum += min[i];
+        for (int i = 0; i < 1 << N; i++) {
+            Arrays.fill(dp[i], -1);
         }
-//        System.out.println(Arrays.toString(min));
 
-        // 최소의 합이 가진 개수보다 작으면 갈YES, 아니면 NO
-        if (sum <= K) {
-            System.out.println("YES");
-        } else {
-            System.out.println("NO");
+        // 입력 및 초기화 완료
+        System.out.println(perm(1, 0, 0, 1 << 0));
+
+    }
+
+    private static int perm(int depth, int start, int end, int visited) throws IOException {
+
+        if (depth == N) {
+            if (pay[end][start] == 0)
+                return inf;
+            return dp[visited][end] = pay[end][start]; // 이거 꼭 저장 안해도 됨(어차피 하나마나)
+        }
+        if (dp[visited][end] != -1) {
+            return dp[visited][end];
+        }
+        dp[visited][end] = inf;
+        for (int i = 0; i < N; i++) {
+            if ((visited & 1 << i) != 0)
+                continue;
+            if (pay[end][i] == 0)
+                continue;
+            int temp = perm(depth + 1, start, i, visited | 1 << i);
+
+            if (pay[end][i] + temp < dp[visited][end]) {
+                dp[visited][end] = pay[end][i] + temp;
+            }
+        }
+        return dp[visited][end];
+
+    }
+
+    private static void printdp() {
+        for (int i = 0; i < 1 << N; i++) {
+            System.out.printf("%4s", Integer.toBinaryString(i));
+            System.out.println(Arrays.toString(dp[i]));
         }
 
     }
