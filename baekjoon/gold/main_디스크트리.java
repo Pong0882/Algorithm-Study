@@ -12,7 +12,7 @@ public class main_디스크트리 {
         int count;
 
         public TrieNode() {
-            this.children = new TrieNode[30];
+            this.children = new TrieNode[100];
             this.finish = false;
             this.count = 0;
         }
@@ -31,13 +31,13 @@ public class main_디스크트리 {
 
             int len = num.length();
             int cnt = 0;
-            boolean flag = false;
+            // boolean flag = false;
 
             for (int i = 0; i < len; i++) {
-                int baby = num.charAt(i) - 'A';
-
+                int baby = num.charAt(i) - '0';
+                // System.out.println(baby);
                 if (cur.children[baby] == null) {
-                    flag = true;
+                    // flag = true;
                     cnt++;
                     cur.children[baby] = new TrieNode();
                 }
