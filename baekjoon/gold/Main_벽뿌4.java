@@ -60,7 +60,7 @@ public class Main_벽뿌4 {
             }
             sb.append("\n");
         }
-
+        // System.out.println(Arrays.toString(result));
         System.out.println(sb);
     }
 
