@@ -1,23 +1,20 @@
-package baekjoon.gold;
+package baekjoon.diamond;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main_라면사기large {
-    static int N, B, C;
+public class Main_라면사기small {
+    static int N;
     static int[] paper;
-    static long result;
+    static int result;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(st.nextToken());
-        B = Integer.parseInt(st.nextToken());
-        C = Integer.parseInt(st.nextToken());
-
         paper = new int[N + 2];
 
         st = new StringTokenizer(br.readLine());
@@ -26,27 +23,21 @@ public class Main_라면사기large {
             paper[i] = Integer.parseInt(st.nextToken());
         }
 
-        if (C >= B) {
-            for (int i = 0; i < N; i++) {
-                buy(i, 1, paper[i]);
-            }
-        } else {
-            for (int i = 0; i < N; i++) {
-                if (paper[i + 1] > paper[i + 2]) {
-                    int min = Math.min(paper[i], paper[i + 1] - paper[i + 2]);
-                    if (min > 0) {
-                        buy(i, 2, min);
-                    }
-                }
-
-                int min = Math.min(paper[i], Math.min(paper[i + 1], paper[i + 2]));
+        for (int i = 0; i < N; i++) {
+            if (paper[i + 1] > paper[i + 2]) {
+                int min = Math.min(paper[i], paper[i + 1] - paper[i + 2]);
                 if (min > 0) {
-                    buy(i, 3, min);
+                    buy(i, 2, min);
                 }
+            }
 
-                if (paper[i] > 0) {
-                    buy(i, 1, paper[i]);
-                }
+            int min = Math.min(paper[i], Math.min(paper[i + 1], paper[i + 2]));
+            if (min > 0) {
+                buy(i, 3, min);
+            }
+
+            if (paper[i] > 0) {
+                buy(i, 1, paper[i]);
             }
         }
 
@@ -56,21 +47,20 @@ public class Main_라면사기large {
     private static void buy(int i, int n, int cnt) {
         switch (n) {
             case 1:
-                result += 1L * B * cnt;
+                result += 3 * cnt;
                 paper[i] -= cnt;
                 break;
             case 2:
-                result += 1L * (B + C) * cnt;
+                result += 5 * cnt;
                 paper[i] -= cnt;
                 paper[i + 1] -= cnt;
                 break;
             case 3:
-                result += 1L * (B + 2 * C) * cnt;
+                result += 7 * cnt;
                 paper[i] -= cnt;
                 paper[i + 1] -= cnt;
                 paper[i + 2] -= cnt;
                 break;
         }
     }
-
 }
