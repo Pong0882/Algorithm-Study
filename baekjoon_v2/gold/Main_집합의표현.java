@@ -40,7 +40,7 @@ public class Main_집합의표현 {
     static int find(int x) {
         if (boss[x] == x)
             return x;
-        return boss[x] = find(boss[x]); // 경로 압축
+        return boss[x] = find(boss[x]);
     }
 
     private static void Union(int a, int b) {
